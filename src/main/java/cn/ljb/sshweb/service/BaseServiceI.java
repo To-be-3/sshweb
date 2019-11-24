@@ -1,0 +1,8 @@
+package cn.ljb.sshweb.service;
+
+public interface BaseServiceI<T> {
+    public void add(T t);
+    public void delete(int id);
+    public void update(T t);
+    public T getOne(int id);
+}

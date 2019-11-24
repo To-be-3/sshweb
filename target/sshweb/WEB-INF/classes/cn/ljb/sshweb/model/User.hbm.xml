@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="cn.ljb.sshweb.model.User" table="user" schema="sshweb">
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="native"></generator>
+        </id>
+        <property name="username" column="username" type="java.lang.String"/>
+        <property name="password" column="password" type="java.lang.String"/>
+        <many-to-one name="department" class="cn.ljb.sshweb.model.Department" fetch="join" lazy="false">
+            <column name="dept_id"/>
+        </many-to-one>
+        <property name="birthday" type="java.util.Date">
+            <column name="birthday"/>
+        </property>
+        <property name="height" column="height" type="java.lang.Double"/>
+        <property name="email" column="email" type="java.lang.String"/>
+    </class>
+</hibernate-mapping>

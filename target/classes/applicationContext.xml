@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+
+
+    <context:component-scan base-package="cn.ljb.sshweb">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+        <context:exclude-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
+    </context:component-scan>
+
+    <context:property-placeholder location="classpath:jdbc.properties" />
+    <bean id="dataSource"
+          class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="user" value="${user}"></property>
+        <property name="password" value="${password}"></property>
+        <property name="jdbcUrl" value="${jdbcUrl}"></property>
+        <property name="driverClass" value="${driverClass}"></property>
+        <property name="initialPoolSize" value="${initialPoolSize}"></property>
+        <property name="acquireIncrement" value="${acquireIncrement}"></property>
+        <property name="minPoolSize" value="${minPoolSize}"></property>
+        <property name="maxPoolSize" value="${maxPoolSize}"></property>
+        <property name="maxStatements" value="${maxStatements}"></property>
+        <!-- 每个连接最多可以有多少个statement，即对象 -->
+        <property name="maxStatementsPerConnection"
+                  value="${maxStatementsPerConnection}"></property>
+    </bean>
+
+    <!-- 整合hibernate的配置 -->
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+        <!--数据源 ,设置数据连接池 -->
+        <property name="dataSource" ref="dataSource"></property>
+        <!-- hibernate核心配置文件的位置 -->
+        <property name="configLocation" value="classpath:hibernate.cfg.xml"></property>
+        <!-- 映射文件 -->
+        <property name="mappingLocations" value="classpath:cn/ljb/sshweb/model/*.hbm.xml"></property>
+    </bean>
+
+    <!-- 配置声明式事务 -->
+    <!-- 配置事务管理器,让hibernate使用spring的声明式事务 -->
+    <bean id="transactionManager"
+          class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+
+    <!-- 事务属性 -->
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="get*" read-only="true"/>
+            <tx:method name="find*" read-only="true"/>
+            <tx:method name="load*" read-only="true"/>
+            <tx:method name="select*" read-only="true"/>
+            <tx:method name="*" read-only="false"/>
+        </tx:attributes>
+    </tx:advice>
+
+    <!-- 事务切入点的配置 -->
+    <aop:config>
+        <aop:pointcut expression="execution(* cn.ljb.sshweb.service.*.*(..))" id="txPoint"/>
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="txPoint" />
+    </aop:config>
+</beans>
