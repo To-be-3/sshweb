@@ -4,10 +4,12 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 public class Department {
     private int id;
+    @NotEmpty(message = "部门名称不能为空")
     private String deptName;
 
     public Department(int id, String deptName) {

@@ -6,7 +6,7 @@ import org.springframework.web.servlet.ModelAndView;
 /**
  * 专门处理异常的Controller类
  */
-//@ControllerAdvice        //还有另外一种更加常用的方法，具体看springmvc.xml里的配置87行
+//@ControllerAdvice        //还有另外一种更加常用的方法，具体看springmvc.xml里的配置第87行
                           // <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
 public class ExController {
     /**

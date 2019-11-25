@@ -26,6 +26,7 @@
     </script>
 </head>
 <body>
+<a href="${pageContext.request.contextPath}/index">首页</a>
 <%--    <a id="json" href="${pageContext.request.contextPath}/testJson1">json的数据格式，来获取所有用户信息</a>--%>
     <a id="json" href="${pageContext.request.contextPath}/testJson2">json的数据格式，来获取所有用户信息</a>
 </body>

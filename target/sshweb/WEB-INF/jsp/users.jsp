@@ -25,6 +25,7 @@
     </script>
 </head>
 <body>
+<a href="${pageContext.request.contextPath}/index">首页</a>
 <%--测试文件上传操作--%>
 <form action="${pageContext.request.contextPath}/upload" method="post" enctype="multipart/form-data">
     文件说明：<input type="text" name="mark"><br><br>

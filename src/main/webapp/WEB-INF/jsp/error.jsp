@@ -11,6 +11,7 @@
     <title>Error</title>
 </head>
 <body>
+<a href="${pageContext.request.contextPath}/index">首页</a>
     错误信息: ${exception}
 </body>
 </html>

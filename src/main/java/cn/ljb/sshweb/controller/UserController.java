@@ -253,7 +253,7 @@ public class UserController extends BaseController{
     }
 
 
-    @RequestMapping("/")
+    @RequestMapping(value = {"/","/index"})
     public String indexTest() {
         return "index";
     }

@@ -12,6 +12,7 @@
     <title>添加新用户</title>
 </head>
 <body>
+<a href="${pageContext.request.contextPath}/index">首页</a>
 <h2>添加新用户</h2>
 <form:form modelAttribute="user" method="post"
            action="${pageContext.request.contextPath}/user">

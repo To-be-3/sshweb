@@ -12,6 +12,7 @@
     <title>修改用户信息</title>
 </head>
 <body>
+<a href="${pageContext.request.contextPath}/index">首页</a>
     <h2>修改用户信息</h2>
     <h4>当前用户信息：</h4>
     <form:form modelAttribute="user" method="put"

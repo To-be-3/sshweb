@@ -9,10 +9,6 @@ import java.util.List;
 
 @Repository("departmentDao")
 public class DepartmentDaoImpl extends BaseDao<Department> implements DepartmentDao {
-    public DepartmentDaoImpl() {
-        System.out.println("================================DepartmentDaoImpl被加载到IOC容器");
-    }
-
     @Override
     public List<Department> getAll() {
         String hql="from Department";

@@ -3,9 +3,10 @@ package cn.ljb.sshweb.dao;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import java.lang.reflect.ParameterizedType;
-
+@Repository("baseDao")
 public class BaseDao<T> implements BaseDaoI<T>{
     @Autowired
     private SessionFactory sessionFactory;

@@ -5,6 +5,9 @@
     <form action="${pageContext.request.contextPath}/users" method="get">
         <input type="submit" value="显示所有用户信息">
     </form>
+    <form action="${pageContext.request.contextPath}/depts" method="get">
+        <input type="submit" value="显示所有部门信息">
+    </form>
     <form action="${pageContext.request.contextPath}/jsonTestView" method="get">
         <input type="submit" value="显示json页面">
     </form>
